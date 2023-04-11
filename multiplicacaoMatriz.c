@@ -27,15 +27,34 @@
 // }
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
-  int n, p, q, r, s, x, y, i, j;
+  int n, p, q, r, s, x, y, i, j, m;
   scanf("%d %d %d %d %d %d %d", &n, &p, &q, &r, &s, &x, &y);
   scanf("%d %d", &i, &j);
 
-  long long a[n][n], b[n][n], c[n][n];
-  // Leitura e cálculo da matriz A
+  long long **a, **b, **c;
+
+  a = (long long **)malloc(n * sizeof(long long *));
+  for (m = 0; m < n; m++)
+  {
+    a[m] = (long long *)malloc(n * sizeof(long long));
+  }
+
+  b = (long long **)malloc(n * sizeof(long long *));
+  for (m = 0; m < n; m++)
+  {
+    b[m] = (long long *)malloc(n * sizeof(long long));
+  }
+
+  c = (long long **)malloc(n * sizeof(long long *));
+  for (m = 0; m < n; m++)
+  {
+    c[m] = (long long *)malloc(n * sizeof(long long));
+  }
+
   for (int row = 0; row < n; row++)
   {
     for (int col = 0; col < n; col++)
@@ -44,7 +63,6 @@ int main()
     }
   }
 
-  // Leitura e cálculo da matriz B
   for (int row = 0; row < n; row++)
   {
     for (int col = 0; col < n; col++)
@@ -53,7 +71,6 @@ int main()
     }
   }
 
-  // Cálculo da matriz C
   for (int row = 0; row < n; row++)
   {
     for (int col = 0; col < n; col++)
@@ -66,7 +83,6 @@ int main()
     }
   }
 
-  // Impressão do resultado
   printf("%lld\n", c[i - 1][j - 1]);
 
   return 0;

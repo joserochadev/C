@@ -26,11 +26,15 @@ int main()
     {
       for (c = 0; c < n; c++)
       {
-        if (i == c)
+        if (i + c == n - 1)
+        {
+          matriz[i][c] = 2;
+        }
+        else if (i == c)
         {
           matriz[i][c] = 1;
         }
-        else if (i + c == n - 1)
+        else if (i == n / 2 && c == n / 2)
         {
           matriz[i][c] = 2;
         }

@@ -1,36 +1,43 @@
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
+int calls = 0;
+
+int fibonacci(int n)
+{
+  calls++;
+  if (n == 0)
+  {
+    return 0;
+  }
+  else if (n == 1)
+  {
+    return 1;
+  }
+  else
+  {
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+}
+
 int main()
 {
-  int *numCalls, *result, num1, num2, n, *input, in;
+  int n, x;
   scanf("%d", &n);
-
-  numCalls = (int *)malloc(n * sizeof(int));
-  result = (int *)malloc(n * sizeof(int));
-  input = (int *)malloc(n * sizeof(int));
-
+  int *input = (int *)malloc(n * sizeof(int));
   for (int i = 0; i < n; i++)
   {
-    scanf("%d", &in);
-    result[i] = -1;
-    numCalls[i] = 0;
-    input[i] = in;
-    num1 = 1;
-    num2 = 0;
-    while (result[i] <= in)
-    {
-      numCalls[i] = num1 + num2;
-      num2 = num1;
-      num1 = numCalls[i];
-      result[i] += 1;
-    }
+    scanf("%d", &x);
+    input[i] = x;
   }
   for (int c = 0; c < n; c++)
   {
-
-    printf("fib(%d) = %d calls = %d\n", input[c], numCalls[c], result[c]);
+    calls = 0;
+    int result = fibonacci(input[c]);
+    printf("fib(%d) = %d calls = %d\n", input[c], calls - 1, result);
   }
-
+  free(input);
   return 0;
 }

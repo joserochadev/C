@@ -1,57 +1,64 @@
+// Neste problema você deverá ler 15 valores colocá-los em 2 vetores conforme estes valores forem pares ou ímpares. Só que o tamanho de cada um dos dois vetores é de 5 posições. Então, cada vez que um dos dois vetores encher, você deverá imprimir todo o vetor e utilizá-lo novamente para os próximos números que forem lidos. Terminada a leitura, deve-se imprimir o conteúdo que restou em cada um dos dois vetores, imprimindo primeiro os valores do vetor impar. Cada vetor pode ser preenchido tantas vezes quantas for necessário.
+
+// Entrada
+// A entrada contém 15 números inteiros.
+
+// Saída
+// Imprima a saída conforme o exemplo abaixo.
+
 #include <stdio.h>
 #include <stdlib.h>
 
 int main()
 {
+  int num, *par, *impar;
+  int i_par = 0, i_impar = 0;
 
-  int *impar, *par, in, imparCount = 0, parCount = 0;
-
-  impar = (int *)malloc(5 * sizeof(int));
   par = (int *)malloc(5 * sizeof(int));
+  impar = (int *)malloc(5 * sizeof(int));
 
   for (int i = 0; i < 15; i++)
   {
-    scanf("%d", &in);
+    scanf("%d", &num);
 
-    if (in % 2 == 0)
+    if (num % 2 == 0)
     {
-      if (parCount == 5)
-      {
-        parCount = 0;
-        for (int c = 0; c < 5; c++)
-        {
-          printf("par[%d] = %d\n", c, par[c]);
-        }
-        free(par);
-      }
-
-      par[parCount] = in;
-      parCount++;
+      par[i_par] = num;
+      i_par++;
     }
     else
     {
-      if (imparCount == 5)
-      {
-        imparCount = 0;
-        for (int j = 0; j < 5; j++)
-        {
-          printf("impar[%d] = %d\n", j, impar[j]);
-        }
-        free(impar);
-      }
+      impar[i_impar] = num;
+      i_impar++;
+    }
 
-      impar[imparCount] = in;
-      imparCount++;
+    if (i_par == 5)
+    {
+      for (int j = 0; j < 5; j++)
+      {
+        printf("par[%d] = %d\n", j, par[j]);
+      }
+      i_par = 0;
+    }
+
+    if (i_impar == 5)
+    {
+      for (int j = 0; j < 5; j++)
+      {
+        printf("impar[%d] = %d\n", j, impar[j]);
+      }
+      i_impar = 0;
     }
   }
 
-  for (int m = 0; m < 5; m++)
+  for (int i = 0; i < i_impar; i++)
   {
-    printf("impar[%d] = %d\n", m, impar[m]);
+    printf("impar[%d] = %d\n", i, impar[i]);
   }
-  for (int n = 0; n < 5; n++)
+
+  for (int i = 0; i < i_par; i++)
   {
-    printf("impar[%d] = %d\n", n, impar[n]);
+    printf("par[%d] = %d\n", i, par[i]);
   }
 
   return 0;
